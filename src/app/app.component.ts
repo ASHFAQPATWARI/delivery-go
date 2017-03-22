@@ -22,7 +22,6 @@ export class MyApp {
   constructor(public platform: Platform, public alertCtrl: AlertController, public modalCtrl: ModalController,
     public loadingCtrl: LoadingController, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
-    console.log('app started');
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home Page', component: HomepagePage }

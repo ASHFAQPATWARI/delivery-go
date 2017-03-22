@@ -28,7 +28,7 @@ export class OrderonmapPage {
       invoiceNo: 34575685,
       coords: {
         lat: 29.4276536,
-        lng: 48.1690358
+        lng: 48.0790358
       }
     },
     {
@@ -48,11 +48,10 @@ export class OrderonmapPage {
     this.loading = this.loadingCtrl.create();
     this.loading.present();
     this.geolocation.getCurrentPosition().then((resp) => {
-      console.log('cordinates got');
       this.loading.dismiss();
       this.loadMap(resp.coords.latitude, resp.coords.longitude);
     }).catch((error) => {
-      console.log('cordinates error', error);
+      alert('cordinates error: ' + error);
       this.loading.dismiss();
     });
   }
@@ -67,6 +66,10 @@ export class OrderonmapPage {
     }
 
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+    let marker = new google.maps.Marker({
+      position: latLng,
+      map: this.map
+    });
     for (var i = 0; i < this.ordersList.length; i++) {
       let marker = new google.maps.Marker({
         position: this.ordersList[i].coords,
