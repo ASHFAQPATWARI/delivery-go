@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Assigned Orders</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    <ion-item-sliding *ngFor="let order of ordersList">
+      <ion-item (click)='showOrderDetails(order)'>
+        <p>{{order.customerName}} ({{order.mobNo}})</p>
+        <p>Invoice No: {{order.invoiceNo}}</p>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="secondary">
+            Pick
+          </button>
+        <button ion-button color="primary" (click)='getCoordinates(order)'>
+            <ion-icon name="locate" item-left></ion-icon>
+          </button>
+        <button ion-button color="danger">
+            Delete
+          </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

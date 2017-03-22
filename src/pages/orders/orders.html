@@ -1,0 +1,54 @@
+<!--
+  Generated template for the Orders page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Pending Orders</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <!--<ion-row margin-vertical>
+    <ion-col text-center>
+      <p>Pending
+        <ion-badge color="danger" item-right>260k</ion-badge>
+      </p>
+    </ion-col>
+    <ion-col text-center>
+      <p>Delivered
+        <ion-badge color="secondary" item-right>260k</ion-badge>
+      </p>
+    </ion-col>
+  </ion-row>-->
+
+  <ion-list>
+    <!--<ion-list-header color="danger">
+      Pending
+    </ion-list-header>-->
+    <ion-item-sliding *ngFor="let order of ordersList">
+      <ion-item (click)='showOrderDetails(order)'>
+        <p>{{order.customerName}} ({{order.mobNo}})</p>
+        <p>Invoice No: {{order.invoiceNo}}</p>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="secondary">
+            Delivered
+          </button>
+        <button ion-button color="primary" (click)='getCoordinates(order)'>
+            <ion-icon name="locate" item-left></ion-icon>
+          </button>
+        <button ion-button color="danger">
+            Reject
+          </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+</ion-content>

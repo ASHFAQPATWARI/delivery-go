@@ -1,0 +1,47 @@
+<!--
+  Generated template for the Login page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Delivery Go</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div class="login-box">
+    <form (ngSubmit)="login()" #loginForm="ngForm">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+
+            <ion-item>
+              <ion-label floating>Username</ion-label>
+              <ion-input type="text" placeholder="Username" name="username" [(ngModel)]="loginCredentials.username" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label floating>Password</ion-label>
+              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="loginCredentials.password" required></ion-input>
+            </ion-item>
+
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <button ion-button margin-bottom full type="submit" color='secondary' [disabled]="!loginForm.form.valid">Login</button>
+          <div margin-vertical text-center>OR</div>
+          <button ion-button margin-top block color="dark" type="button" (click)="createAccount()">Create New Account</button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+  </div>
+</ion-content>
