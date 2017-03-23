@@ -1,7 +1,6 @@
 {
-  "name": "ionic-hello-world",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "name": "delivery-go",
+  "author": "Ashfaq Patwari",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
@@ -44,5 +43,5 @@
     "cordova-plugin-geolocation"
   ],
   "cordovaPlatforms": [],
-  "description": "delivery-go: An Ionic project"
+  "description": "Delivery-go"
 }

@@ -47,11 +47,11 @@ export class OrderonmapPage {
     console.log('in map vieewer');
     this.loading = this.loadingCtrl.create();
     this.loading.present();
-    this.geolocation.getCurrentPosition().then((resp) => {
+    this.geolocation.getCurrentPosition({ maximumAge: 30000, timeout: 5000, enableHighAccuracy: true }).then((resp) => {
       this.loading.dismiss();
       this.loadMap(resp.coords.latitude, resp.coords.longitude);
     }).catch((error) => {
-      alert('cordinates error: ' + error);
+      console.log('cordinates error: ', error);
       this.loading.dismiss();
     });
   }
