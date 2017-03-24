@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 
 import { OrderonmapPage } from '../orderonmap/orderonmap';
 import { OrdersPage } from '../orders/orders';
 import { DeliveredOrdersPage } from '../delivered-orders/delivered-orders';
 import { AssignedOrdersPage } from '../assigned-orders/assigned-orders';
+
+declare const cordova: any;
 
 /*
   Generated class for the Homepage page.
@@ -23,10 +25,32 @@ export class HomepagePage {
   deliveredOrders: any = DeliveredOrdersPage;
   assignedOrders: any = AssignedOrdersPage;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) { }
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public navParams: NavParams) { }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HomepagePage');
+    cordova.plugins.diagnostic.isGpsLocationEnabled((enabled) => {
+      
+      if(!enabled){
+          let prompt = this.alertCtrl.create({
+            title: 'Location Services Disabled',
+            message: "Please enable location services.",
+            buttons: [
+              {
+                text: 'Ok',
+                handler: data => {
+                  cordova.plugins.diagnostic.switchToLocationSettings();
+                }
+              }
+            ]
+          });
+          prompt.present();
+
+        
+      }
+
+    }, function (error) {
+      alert("The following error occurred: " + error);
+    });
   }
 
 }

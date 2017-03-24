@@ -1,8 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, ModalController, LoadingController, Loading } from 'ionic-angular';
+import { Nav, Platform, ModalController, LoadingController, Loading, AlertController } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { AlertController } from 'ionic-angular';
 
 import { HomepagePage } from '../pages/homepage/homepage';
 import { AppsettingsPage } from '../pages/appsettings/appsettings';
