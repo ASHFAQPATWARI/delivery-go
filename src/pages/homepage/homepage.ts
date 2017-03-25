@@ -29,23 +29,23 @@ export class HomepagePage {
 
   ionViewDidLoad() {
     cordova.plugins.diagnostic.isGpsLocationEnabled((enabled) => {
-      
-      if(!enabled){
-          let prompt = this.alertCtrl.create({
-            title: 'Location Services Disabled',
-            message: "Please enable location services.",
-            buttons: [
-              {
-                text: 'Ok',
-                handler: data => {
-                  cordova.plugins.diagnostic.switchToLocationSettings();
-                }
-              }
-            ]
-          });
-          prompt.present();
 
-        
+      if (!enabled) {
+        let prompt = this.alertCtrl.create({
+          title: 'Location Services Disabled',
+          message: "Please enable location services.",
+          buttons: [
+            {
+              text: 'Ok',
+              handler: data => {
+                cordova.plugins.diagnostic.switchToLocationSettings();
+              }
+            }
+          ]
+        });
+        prompt.present();
+
+
       }
 
     }, function (error) {

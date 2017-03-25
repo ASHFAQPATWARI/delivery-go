@@ -1,3 +1,28 @@
-page-order-detail {
+.invoice-card {
+  .card-header {
+    padding: 10px;
+    border-bottom: 1px solid #dcdcdc;
+    margin-bottom: 10px;
+    background-color: #e6e6e6;
+  }
+  .card-content {
+    padding: 0;
+    font-size: 1.2rem;
+  }
+  .grid {
+    padding-right: 0;
+    padding-left: 0;
+    .row {
+      border-bottom: 1px solid #dcdcdc;
+    }
+  }
+}
 
+.order-address {
+  .card-header {
+    padding: 10px;
+    border-bottom: 1px solid #dcdcdc;
+    margin-bottom: 10px;
+    background-color: #e6e6e6;
+  }
 }

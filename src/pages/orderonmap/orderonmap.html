@@ -10,6 +10,11 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Map</ion-title>
+    <ion-buttons end *ngIf="retryLoadingMap">
+      <button ion-button icon-only color="royal" (click)="getPositionAndLoadMap()">
+        <ion-icon name="refresh"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 

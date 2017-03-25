@@ -51,8 +51,9 @@ export class AssignedOrdersPage {
   }
 
   showOrderDetails(order) {
-    let modal = this.modalCtrl.create(OrderDetailPage, { order: order });
-    modal.present();
+    // let modal = this.modalCtrl.create(OrderDetailPage, { order: order });
+    // modal.present();
+    this.navCtrl.push(OrderDetailPage, { order: order });
   }
 
 }
