@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController, NavParams, Loading, LoadingController, AlertController } from 'ionic-angular';
+import { NavController, NavParams, Loading, LoadingController, AlertController, ViewController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 
 import {
@@ -60,35 +60,45 @@ export class OrderonmapPage {
   retryLoadingMap = false;
 
   constructor(public navCtrl: NavController, public alertCtrl: AlertController, public navParams: NavParams, public loadingCtrl: LoadingController,
-    public geolocation: Geolocation, private googleMaps: GoogleMaps) { }
+    public geolocation: Geolocation, private googleMaps: GoogleMaps, public viewCtrl: ViewController) {
+
+    this.viewCtrl.willLeave.subscribe(() => {
+      this.map.clear();
+    });
+
+    this.viewCtrl.willEnter.subscribe(() => {
+      cordova.plugins.diagnostic.isGpsLocationEnabled((enabled) => {
+
+        if (!enabled) {
+          this.retryLoadingMap = true;
+          let prompt = this.alertCtrl.create({
+            title: 'Location Services Disabled',
+            message: "Please enable location services.",
+            buttons: [
+              {
+                text: 'Ok',
+                handler: data => {
+                  cordova.plugins.diagnostic.switchToLocationSettings();
+                }
+              }
+            ]
+          });
+          prompt.present();
+
+        } else {
+          this.getPositionAndLoadMap();
+        }
+
+      }, function (error) {
+        this.retryLoadingMap = true;
+        alert("The following error occurred: " + JSON.stringify(error));
+      });
+
+    });
+
+  }
 
   ionViewDidLoad() {
-
-    cordova.plugins.diagnostic.isGpsLocationEnabled((enabled) => {
-
-      if (!enabled) {
-        this.retryLoadingMap = true;
-        let prompt = this.alertCtrl.create({
-          title: 'Location Services Disabled',
-          message: "Please enable location services.",
-          buttons: [
-            {
-              text: 'Ok',
-              handler: data => {
-                cordova.plugins.diagnostic.switchToLocationSettings();
-              }
-            }
-          ]
-        });
-        prompt.present();
-
-      } else {
-        this.getPositionAndLoadMap();
-      }
-
-    }, function (error) {
-      alert("The following error occurred: " + JSON.stringify(error));
-    });
 
   }
 
@@ -100,6 +110,7 @@ export class OrderonmapPage {
       this.retryLoadingMap = false;
       this.loadMap(resp.coords.latitude, resp.coords.longitude);
     }).catch((error) => {
+      this.retryLoadingMap = true;
       this.loading.dismiss();
       let prompt = this.alertCtrl.create({
         title: 'Error!!',
@@ -161,6 +172,5 @@ export class OrderonmapPage {
     });
 
   }
-
 
 }

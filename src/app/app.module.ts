@@ -1,5 +1,7 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { SignaturePadModule } from 'angular2-signaturepad';
+
 import { MyApp } from './app.component';
 import { AppsettingsPage } from '../pages/appsettings/appsettings';
 import { HomepagePage } from '../pages/homepage/homepage';
@@ -30,7 +32,8 @@ import { GoogleMaps } from '@ionic-native/google-maps';
     AppsettingsPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    SignaturePadModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
